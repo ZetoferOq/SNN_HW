@@ -1,0 +1,3 @@
+package stp_stdp_synapse_pkg;
+
+endpackage
