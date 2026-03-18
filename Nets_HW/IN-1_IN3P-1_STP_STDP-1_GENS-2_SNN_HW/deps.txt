@@ -1,0 +1,10 @@
+Service_HW/Clock_divider_HW
+Service_HW/Fixed_Point_Arithmetic_HW
+Service_HW/Signal_generator_HW
+Service_HW/Spikes_counter_HW
+Network_HW/Dendrite_HW
+Network_HW/Neuron_Izh_HW
+Network_HW/Soma_Izh_HW
+Network_HW/STDP_HW
+Network_HW/STP_HW
+Network_HW/STP_STDP_Synapse_HW

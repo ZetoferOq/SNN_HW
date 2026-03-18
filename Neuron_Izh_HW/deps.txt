@@ -1,3 +1,0 @@
-Dendrite_HW
-Fixed_Point_Arithmetic_HW
-Soma_Izh_HW
