@@ -53,7 +53,6 @@ module top_example (
         .tx32_busy_o(tx_busy)
     );
 
-
     assign is_multiple = (counter % 1000000 == 0);
    
     always_ff @(posedge clk_i) begin
@@ -62,6 +61,7 @@ module top_example (
             tx_start <= 0;
             counter <= 0;
         end else begin
+            ///*
             // Fixed value
             if (counter == 32'd500_000 && !tx_busy) begin
                 tx_data <= 32'hDEADBEFF;
@@ -70,7 +70,8 @@ module top_example (
                 tx_data <= 32'h0;
                 tx_start <= 0;
             end
-            
+            //*/
+
             /*
             // Counter dynamic value
             if (is_multiple) begin

@@ -29,17 +29,15 @@ module uart_tx32 (
      * START          - Trigger "tx8_start = 1" and swith to WAIT_ACCEPT state.
      * WAIT_ACCEPT    - Wait until the uart_tx8 module confirms it has accepted request from START state, 
      *                  which is indicated by the signal busy going HIGH (wait tx8_busy == 1).
-     * WAIT_DONE_LAST - Wait until current byte tx finishes (byte is not last) (wait tx8_busy=0).
-     *                  Then switch to LOAD state to obtain next byte.
-     * WAIT_DONE      - Wait until last byte finishes (last byte) (wait tx8_busy=0).
-     *                  Then switch to IDLE state.
+     * WAIT_DONE      - Wait until byte tx finishes (wait tx8_busy=0).
+     *                  Then switch to LOAD state to obtain next byte (if current byte is not last).
+     *                  Or switch to IDLE state (if current byte is last).
      */
     typedef enum logic [2:0] {
         IDLE,
         LOAD,
         START,
         WAIT_ACCEPT,
-        WAIT_DONE_LAST,
         WAIT_DONE
     } state_t;
 
@@ -84,25 +82,19 @@ module uart_tx32 (
                 WAIT_ACCEPT: begin
                     if (tx8_busy) begin
                         tx8_start <= 0; // release request
-                        if (byte_idx == 2'd3) begin
-                            state <= WAIT_DONE_LAST; // Last byte
-                        end else begin
-                            state <= WAIT_DONE;      // Intermediate bytes
-                        end
+                        state <= WAIT_DONE;
                     end
                 end
 
                 WAIT_DONE: begin
                     if (!tx8_busy) begin
-                        byte_idx <= byte_idx + 1;
-                        state <= LOAD;
-                    end
-                end
-
-                WAIT_DONE_LAST: begin
-                    if (!tx8_busy) begin
-                        tx32_busy_o <= 0;
-                        state <= IDLE;
+                        if (byte_idx == 2'd3) begin  // Last byte
+                            tx32_busy_o <= 0;
+                            state <= IDLE;
+                        end else begin               // Intermediate bytes
+                            byte_idx <= byte_idx + 1;
+                            state <= LOAD;
+                        end
                     end
                 end
 
