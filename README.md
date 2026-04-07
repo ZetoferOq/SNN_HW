@@ -4,6 +4,10 @@ See the `docs` directory to find out how to use project.
 
 # TODO
 
+## Repository
+
+- [ ] Add Readme descriptions for each module 
+
 ## Configurator script
 
 - [ ] Add Configurator script to easily create Network with any topology.
