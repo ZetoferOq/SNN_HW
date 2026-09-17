@@ -3,10 +3,15 @@
 ## Units
 
 **Ptah**: Project Builder
+
 **Sia**: Compute Unit
+
 **Wadjet**: Debug Unit
+
 **Thoth**: IO Unit
+
 **Nets**: Predefined networks configurations
+
 **Service**: Service HW modules
 
 ## Add changes to Git
