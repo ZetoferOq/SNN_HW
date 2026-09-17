@@ -41,7 +41,7 @@ UNITS:
   Wadjet  - SW/HW unit
   Nets    - HW-only unit
 '''
-UNITS = ("Service", "Sia", "Thoth/HW", "Wadjet/HW", "Nets", "ASD", "Wadjet/SDF")
+UNITS = ("Service", "Sia", "Thoth/HW", "Wadjet/HW", "Nets")
 
 
 ######### HELPERS BEGIN
