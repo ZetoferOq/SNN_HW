@@ -1,4 +1,4 @@
-# How to use Ptah Build System
+# Ptah Build System
 
 ## Ptah menu
 
