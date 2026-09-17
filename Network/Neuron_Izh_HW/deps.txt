@@ -1,3 +1,0 @@
-Network/Dendrite_HW
-Network/Soma_Izh_HW
-Service/Fixed_Point_Arithmetic_HW

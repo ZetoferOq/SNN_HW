@@ -1,0 +1,8 @@
+{
+    "unit": "Sia",
+    "module": "Soma_Izh_HW",
+    "dependencies":
+    [
+        "Service/Fixed_Point_Arithmetic_HW"
+    ]
+}

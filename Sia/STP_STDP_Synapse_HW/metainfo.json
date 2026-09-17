@@ -1,0 +1,10 @@
+{
+    "unit": "Sia",
+    "module": "STP_STDP_Synapse_HW",
+    "dependencies":
+    [
+        "Sia/STDP_HW",
+        "Sia/STP_HW",
+        "Service/Fixed_Point_Arithmetic_HW"
+    ]
+}

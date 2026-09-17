@@ -1,0 +1,9 @@
+{
+    "unit": "Sia",
+    "module": "Neuron_Izh_HW",
+    "dependencies":
+    [
+        "Sia/Dendrite_HW",
+        "Sia/Soma_Izh_HW"
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "unit": "Nets",
+    "module": "IN-1_IN3P-1_STP_STDP-1_GENS-2_SNN_HW",
+    "dependencies":
+    [
+        "Service/Clock_Divider_HW",
+        "Service/Fixed_Point_Arithmetic_HW",
+        "Thoth/HW/Signal_Generator_HW",
+        "Thoth/HW/Spikes_Counter_HW",
+        "Sia/Neuron_Izh_HW",
+        "Sia/Soma_Izh_HW",
+        "Sia/STP_STDP_Synapse_HW"
+    ]
+}
