@@ -36,7 +36,7 @@ Specify any correct Xilinx FPGA part name.
 
 ![Run Tcl script 1](./media/how_to_build_1.png)
 
-## Enjoy
+### Enjoy
 
 ![Run Tcl script 2](./media/how_to_build_2.png)
 
@@ -49,3 +49,73 @@ Add new files to the source directories if you want to commit them to Git.
 ## Notes
 
 - If the Vivado project wasn't saved, you can find temp project copy in the `C:\Users\<user_name>\AppData\Roaming\Xilinx\Vivado` directory.
+
+---
+
+## Dependecies strucure
+
+### Files structure
+```
+Nets
+├── <net_config_name>_HW
+│   ├── snn_proj
+│   │   ├── constrs
+│   │   │   └── <file_name>.xdc
+│   │   ├── sim
+│   │   │   └── snn_tb.sv
+│   │   └── src
+│   │       └── snn.sv
+│   ├── metainfo.json
+│   └── README.md
+...
+└── ...
+----------------------------------------
+<Unit_Name>
+├── <Module_Name>_HW
+│   ├── <module_name>_proj
+│   │   ├── constrs
+│   │   │   └── <file_name>.xdc
+│   │   ├── sim
+│   │   │   └── <module_name>_tb.sv
+│   │   └── src
+│   │       └── <module_name>.sv
+│   ├── metainfo.json
+│   └── README.md
+...
+└── ...
+```
+
+### metainfo.json file structure
+
+``` json
+{
+    "unit": "<Unit_Name>",
+    "module": "<Module_Name>",
+    "dependencies":
+    [
+        "<Unit_Name>/<Module_Name>",
+        ...
+    ]
+}
+```
+
+- If Unit has SW and HW parts, specify HW:
+``` json
+{
+    "unit": "<Unit_Name>",
+    "module": "<Module_Name>",
+    "dependencies":
+    [
+        "<Unit_Name>/HW/<Module_Name>",
+        ...
+    ]
+}
+```
+
+- If there is no dependencies, `dependencies` section is not specified:
+``` json
+{
+    "unit": "<Unit_Name>",
+    "module": "<Module_Name>"
+}
+```
