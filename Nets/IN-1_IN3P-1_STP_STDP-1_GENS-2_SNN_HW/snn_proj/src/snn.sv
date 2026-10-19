@@ -7,18 +7,31 @@ module snn #(
     output logic [7:0] leds_n0_o,
     output logic [7:0] leds_n1_o
 );
+
+/*
+ * After changing TARGET_FREQUNCY do not forget to fix '-divide_by' value for create_generated_clock in the .xdc file:
+ * new value = 2 * HALF
+ *      HALF = (DIV_MAX < 1) ? 1 : DIV_MAX
+ *      DIV_MAX = BASE_FREQUENCY / (TARGET_FREQUENCY * 2)
+ */
+    logic slow_clk_raw;
     logic slow_clk;
     (* dont_touch = "true" *)  clk_divider #(
-        .TRGET_FREQUENCY(1000000)  // 1 MHz 
-        //.TRGET_FREQUENCY(10000000)  // 10 MHz
-        //.TRGET_FREQUENCY(20000000)  // 20 MHz
-        //.TRGET_FREQUENCY(25000000)  // 25 MHz
-        //.TRGET_FREQUENCY(30000000)  // 30 MHz (Too much)
-        //.TRGET_FREQUENCY(50000000)  // 50 MHz
+        .TARGET_FREQUENCY(1000000)  // 1 MHz 
+        //.TARGET_FREQUENCY(10000000)  // 10 MHz
+        //.TARGET_FREQUENCY(20000000)  // 20 MHz
+        //.TARGET_FREQUENCY(25000000)  // 25 MHz
+        //.TARGET_FREQUENCY(30000000)  // 30 MHz (Too much)
+        //.TARGET_FREQUENCY(50000000)  // 50 MHz
     ) clk_div (
         .clk_i(clk_i),
         .rstn_i(rstn_i),
-        .slow_clk_o(slow_clk)
+        .slow_clk_o(slow_clk_raw)
+    );
+    
+    BUFG u_bufg_slow_clk (
+        .I (slow_clk_raw),
+        .O (slow_clk)
     );
 
     logic signed [BIT_WIDTH-1:0] signal_g0_n0, signal_g1_n1;

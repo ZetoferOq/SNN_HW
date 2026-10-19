@@ -71,4 +71,5 @@ See the `docs` directory to find out how to use project.
 - [ ] Devise a useful network design based on available resources. (Research)
 
 ## Other
-- [ ] Check the correctness of `clock_div`. Should it be implemented via `enable` bit? (Research)
+- [X] Check the correctness of `clock_div`. Should it be implemented via `enable` bit? (Research) 
+**RESULT:** Currently implementation is based on `BUFG` and `create_generated_clock`. Here `BUFG` is a global clock buffer used to drive the clock net after frequency division.

@@ -13,8 +13,9 @@ set_property CFGBVS VCCO [current_design]
 
 ## CLOCK SIGNAL ########################################################################################################################
 set_property -dict {PACKAGE_PIN W5 IOSTANDARD LVCMOS33} [get_ports clk_i]
-create_clock -period 10 -name clk_i -waveform {0 5} -add [get_ports clk_i]
-#create_clock -period 100.000 -name clk -waveform {0.000 50.000} -add [get_ports clk]
+#create_clock -period 10 -name clk_i -waveform {0 5} -add [get_ports clk_i]
+create_clock -period 100.000 -name clk_i -waveform {0.000 50.000} -add [get_ports clk_i]
+create_generated_clock -name slow_clk -source [get_ports clk_i] -divide_by 100 [get_pins u_bufg_slow_clk/O]
 #--------------------------------------------------------------------------------------------------------------------------------------#
 #set_property -dict { PACKAGE_PIN W5    IOSTANDARD LVCMOS33 } [get_ports {CK}];
 #create_clock -add -name sys_clk_pin -period 10.00 -waveform {0 5} [get_ports {CK}];
